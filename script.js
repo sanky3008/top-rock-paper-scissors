@@ -1,3 +1,6 @@
+const output = document.querySelector(".output");
+const score = document.querySelector(".score");
+
 // Create a function that returns rock, paper or scissors at random
 
 function getComputerChoice() {
@@ -35,34 +38,43 @@ function playRound(humanchoice, computerChoice) {
     if (humanChoice == 'rock') {
         if (computerChoice == 'rock') {
             console.log('Its a tie!');
+            output.innerText = "Its a tie!";
             winner = 'none';
         } else if (computerChoice == 'paper') {
             console.log("You lose! Paper beats Rock!");
+            output.innerText = "You lose! Paper beats Rock!";
             winner = 'computer';
         } else if (computerChoice == 'scissors') {
             console.log("You win! Rock beats Scissors!");
+            output.innerText = "You win! Rock beats Scissors!";
             winner = 'human';
         }
     } else if (humanChoice == 'paper') {
         if (computerChoice == 'rock') {
             console.log("You win! Paper beats Rock!");
+            output.innerText = "You win! Paper beats Rock!";
             winner = 'human';
         } else if (computerChoice == 'paper') {
             console.log('Its a tie!');
+            output.innerText = "Its a tie!";
             winner = 'none';
         } else if (computerChoice == 'scissors') {
             console.log("You lose! Scissors beats Paper!");
+            output.innerText = "You lose! Scissors beats Paper!";
             winner = 'computer';
         }
     } else if (humanChoice == 'scissors') {
         if (computerChoice == 'rock') {
             console.log("You lose! Rock beats Scissors!");
+            output.innerText = "You lose! Rock beats Scissors!";
             winner = 'computer';
         } else if (computerChoice == 'paper') {
             console.log("You win! Scissors beats Paper!");
+            output.innerText = "You win! Scissors beats Paper!";
             winner = 'human';
         } else if (computerChoice == 'scissors') {
             console.log('Its a tie!');
+            output.innerText = "Its a tie!";
             winner = 'none';
         }
     }
@@ -75,45 +87,17 @@ function playRound(humanchoice, computerChoice) {
         // console.log(computerScore + "in playground")
     }
 
+    score.innerText = "Your score is: " + humanScore + " and Computer's Score is: " + computerScore;
     return winner;
 }
 
-// Create a function to play the game
+const buttons = document.querySelectorAll("button");
 
-function playGame() {
-    console.log("let's start!");
-    console.log("your score is: " + humanScore);
-    console.log("computer's score is: " + computerScore);
+console.log(buttons);
 
-    // Round 1
-    playRound(getHumanChoice(), getComputerChoice());
-    console.log("End of Round 1!")
-    console.log("your score is: " + humanScore);
-    console.log("computer's score is: " + computerScore);
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        playRound(button.innerText, getComputerChoice());
 
-    // Round 2
-    playRound(getHumanChoice(), getComputerChoice());
-    console.log("End of Round 2!")
-    console.log("your score is: " + humanScore);
-    console.log("computer's score is: " + computerScore);
-
-    // Round 3
-    playRound(getHumanChoice(), getComputerChoice());
-    console.log("End of Round 3!")
-    console.log("your score is: " + humanScore);
-    console.log("computer's score is: " + computerScore);
-
-    // Round 4
-    playRound(getHumanChoice(), getComputerChoice());
-    console.log("End of Round 4!")
-    console.log("your score is: " + humanScore);
-    console.log("computer's score is: " + computerScore);
-
-    // Round 5
-    playRound(getHumanChoice(), getComputerChoice());
-    console.log("End of Round 5!")
-    console.log("your score is: " + humanScore);
-    console.log("computer's score is: " + computerScore);
-}
-
-playGame(humanScore, computerScore);
+    })   
+})
